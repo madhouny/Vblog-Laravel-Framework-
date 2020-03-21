@@ -13,14 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'PagesController@getContact');
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', 'PagesController@getAbout');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'PagesController@getIndex');
