@@ -4,5 +4,7 @@
 @endsection
 
 @section('content')
-    <p class="lead"> l'article du blog</p>
+
+<h1>{{$post->title}}</h1>
+    <p class="lead"> {{$post->body}}</p>
 @endsection

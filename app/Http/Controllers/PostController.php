@@ -63,8 +63,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-        return view('posts.show');
+        //Trouver article à l'aide de son Id
+        $post =  Post::find($id);
+
+        return view('posts.show')->with('post',$post);
     }
 
     /**
