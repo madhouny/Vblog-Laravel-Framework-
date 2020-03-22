@@ -18,6 +18,8 @@
 </div> <!-- end of .container -->
 
    @include('partials.JS')
+
+   @yield('scripts')
    
   </body>
 </html>
