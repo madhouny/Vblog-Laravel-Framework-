@@ -1,5 +1,9 @@
 
-   @extends('main') 
+ @extends('main') 
+
+ @section('title')
+ <title>Contact</title> 
+@endsection
 
 @section('content')
     

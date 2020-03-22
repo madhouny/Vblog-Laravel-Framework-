@@ -1,5 +1,7 @@
 @extends('main')
-
+@section('title')
+   <title>Page d'accueil</title> 
+@endsection
 @section('content')
     
     <div class="row">

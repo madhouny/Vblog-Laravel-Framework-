@@ -1,5 +1,9 @@
 
  @extends('main')
+
+ @section('title')
+   <title>About</title> 
+@endsection
     
     
 @section('content')
