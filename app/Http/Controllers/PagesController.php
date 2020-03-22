@@ -11,7 +11,9 @@ class PagesController extends Controller
     }
 
     public function getAbout(){
-        return view('pages.about');
+        $group = 'MIASHS BLOG';
+        $student = 'By Juba , Sylvain ,Youness';
+        return view('pages.about')->with('group',$group)->with('student',$student);
     }
 
     public function getContact(){
