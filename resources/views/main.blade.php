@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="en">
+
 @include('partials.header')
 
 <body>
@@ -15,5 +18,6 @@
 </div> <!-- end of .container -->
 
    @include('partials.JS')
+   
   </body>
 </html>
