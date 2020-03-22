@@ -10,6 +10,7 @@
             <h1>Créer un Nouveau Article</h1>
             <hr>
         <form class="form-group" action="{{route('posts.store')}}" method="post">
+            @csrf
                 <label  for="title">Titre :</label>
                 <input class="form-control" type="text" name="title">
 
@@ -17,7 +18,7 @@
                 <textarea class="form-control" name="body" id="" cols="30" rows="10"></textarea>
 
                 <br>
-                <button class="btn btn-success btn-lg btn-block" disabled="disabled"> Ajouter un Article</button>
+                <button class="btn btn-success btn-lg btn-block" > Ajouter un Article</button>
             </form>
 
         </div>
