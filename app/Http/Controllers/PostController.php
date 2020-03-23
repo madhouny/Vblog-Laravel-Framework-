@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         //Creer une variable qui regroupe tous les articles du blog
             $posts = post::all();
-            
+
         // return view & passer la variable 
             return view('posts.index')->with('posts',$posts);
     }
@@ -81,7 +81,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Trouver l'article dans la base du donnée et l'affecter dans un variable
+        $post = Post::find($id);
+
+        // return view edit avec la variable
+        return view('posts.edit')->with('post',$post); 
     }
 
     /**
