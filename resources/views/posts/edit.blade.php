@@ -4,21 +4,27 @@
     <title>Modifier l'article du blog</title>
 @endsection
 
+@section('stylesheets')
+    <link rel="stylesheet" href="{{URL::to('../../public/css/parsley.css')}}">
+    
+@endsection
+
 
 @section('content')
 <div class="row">
 
     <div class="col-md-8 ">
     
-    <form  class="form-group" action="{{route('posts.update', $post->id)}}" method="post">
+    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="Put">
         @csrf
+        
             <label  for="title"><Strong> Titre :</strong></label>
-            <input  class="form-control form-control-lg" type="text" name="title" value="{{ old('title')?old('title') : $post->title}}">
+            <input required maxLength="100" class="form-control form-control-lg" type="text" name="title" value="{{$post->title}}">
 
             <label class="form-spacing-top" for="body"><strong> Body :</strong></label>
-            <textarea  class="form-control" name="body" id="" cols="30" rows="10" value="{{ old('body')?old('body') : $post->body}}">
+            <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10" value="{{ $post->body}}">
             </textarea>
-    </form>
+    
     </div>
     <div class="col-md-4 form-margin-top">
         <div class="card card-body bg-light">
@@ -40,11 +46,13 @@
                 </div>
 
                 <div class="col-sm-6">
-                <a href="{{route('posts.update', $post->id)}}" class="btn btn-success btn-block">Enregistrer</a>
+                <button class="btn btn-success btn-block">Enregistrer </button>
+                
                 </div>
             </div>
 
         </div>
     </div>
+</form>
 </div> 
 @endsection

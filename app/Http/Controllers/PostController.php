@@ -45,14 +45,14 @@ class PostController extends Controller
                 'title'=>'required|max:100',
                 'body'=>'required|max:1000'
             ]);
-        //Sauvgarder dans la Base de donner
+        //Sauvgarder les données dans database
                 $post = new Post;
                 $post->title = $request->title;
                 $post->body = $request->body;
 
                 $post->save();
 
-                //Flash Messages
+         //Flash Messages
                 Session::flash('success','Article a été sauvegardé avec succès!');
 
         //Rediriger vers autre page
@@ -97,7 +97,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Valider les données
+            $this->validate($request, [
+                'title'=>'required|max:100',
+                'body'=>'required|max:1000'
+            ]);
+        //Sauvegarder donnée vers database
+            $post = Post::find($id);
+            $post->title = $request->get('title');
+            $post->body = $request->get('body');
+
+            $post->save();
+
+        // flash data avec message de succes
+            Session::flash('Success','Article a été sauvegardé avec succès!');
+
+        //redirection vers posts.show
+            return redirect()->route('posts.show', $post->id);
     }
 
     /**
