@@ -15,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //Creer une variable qui regroupe tous les articles du blog
+            $posts = post::all();
+            
+        // return view & passer la variable 
+            return view('posts.index')->with('posts',$posts);
     }
 
     /**
