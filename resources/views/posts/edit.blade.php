@@ -15,7 +15,7 @@
 
     <div class="col-md-8 ">
     
-    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="Put">
+    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="PUT">
         @csrf
         
             <label  for="title"><Strong> Titre :</strong></label>
@@ -42,14 +42,12 @@
             <div class="row">
                 <div class="col-sm-6">
 
-                <a href="{{route('posts.show', $post->id)}}" class="btn btn-danger btn-block">Annuler</a>
+                    <a href="{{route('posts.show', $post->id)}}" class="btn btn-danger btn-block">Annuler</a>
                 </div>
 
                 <div class="col-sm-6">
+                    {{Form::submit('Save  Changes', ['class'=>'btn btn-success btn-block']) }}
     
-                <input type="submit" class="btn btn-success btn-block"  value="Enregistrer">
-                </form>
-                
                 </div>
             </div>
 

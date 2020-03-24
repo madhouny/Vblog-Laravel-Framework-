@@ -15,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //Creer une variable qui regroupe tous les articles du blog
-            $posts = post::all();
+        //Creer une variable qui regroupe tous les articles du blog limiter à 5 par pages,
+            $posts = post::paginate(5);
 
         // return view & passer la variable 
             return view('posts.index')->with('posts',$posts);
