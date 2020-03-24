@@ -46,7 +46,9 @@
                 </div>
 
                 <div class="col-sm-6">
-                <button class="btn btn-success btn-block">Enregistrer </button>
+    
+                <input type="submit" class="btn btn-success btn-block"  value="Enregistrer">
+                </form>
                 
                 </div>
             </div>

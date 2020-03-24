@@ -104,8 +104,8 @@ class PostController extends Controller
             ]);
         //Sauvegarder donnée vers database
             $post = Post::find($id);
-            $post->title = $request->get('title');
-            $post->body = $request->get('body');
+            $post->title = $request->input('title');
+            $post->body = $request->input('body');
 
             $post->save();
 
@@ -125,5 +125,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::find($id);
+        $post->delete();
+        Session::flash('success', 'l article à été bien supprimer');
+        return redirect()->route('posts.index');
     }
 }
