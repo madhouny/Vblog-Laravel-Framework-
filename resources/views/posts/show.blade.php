@@ -37,6 +37,13 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                <a href="{{route('posts.index')}}" class="btn btn-info btn-sm btn-block btn-spacing">Voir tous les Articles</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
