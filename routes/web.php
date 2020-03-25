@@ -25,6 +25,10 @@ Route::group(['middleware'=>['web']], function(){
     Route::get('auth/register','UserController@getRegister');
     Route::post('auth/register','UserController@postRegister');
 
+    Route::get('/blog',[
+        'uses'=>'BlogController@getIndex',
+        'as'=>'blog.index'
+    ]);
     Route::get('/contact', 'PagesController@getContact');
     Route::get('/about', 'PagesController@getAbout');
     Route::get('/', 'PagesController@getIndex');
