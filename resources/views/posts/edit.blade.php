@@ -15,9 +15,9 @@
 
     <div class="col-md-8 ">
     
-    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="PUT">
+    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="post">
         @csrf
-        
+        @method('PUT')
             <label  for="title"><Strong> Titre :</strong></label>
             <input required maxLength="100" class="form-control form-control-lg" type="text" name="title" value="{{$post->title}}">
 
