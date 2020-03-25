@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['web']], function(){
+    //Authentification routes
+    Route::get('auth/login','UserController@getLogin');
+    Route::post('auth/login','UserController@postLogin');
+    Route::get('auth/logout','UserController@getLogout');
+
+    //Registration Routes
+    Route::get('auth/register','UserController@getRegister');
+    Route::post('auth/register','UserController@postRegister');
 
     Route::get('/contact', 'PagesController@getContact');
     Route::get('/about', 'PagesController@getAbout');
