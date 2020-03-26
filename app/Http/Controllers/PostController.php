@@ -8,6 +8,12 @@ use Session;
 
 class PostController extends Controller
 {
+    //Pour créer une authentification 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
