@@ -19,6 +19,7 @@ Route::group(['middleware'=>['web']], function(){
    
 
     Route::get('/blog','BlogController@getIndex')->name('blog.index');
+    Route::get('/blog/{id}','BlogController@getSingle')->name('blog.single');
         
     
     Route::get('/contact', 'PagesController@getContact');
@@ -31,4 +32,4 @@ Route::group(['middleware'=>['web']], function(){
 
 // Authentification routes
 Auth::routes();
-Route::resource('users','UserController',['except' =>['show', 'create', 'store']]);
+

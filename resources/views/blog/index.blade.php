@@ -19,7 +19,7 @@
             <h5 class="text-muted">Publié: {{ date('M j, Y', strtotime($post->created_at))}}</h5>
         <p>{{ substr($post->body,0,100) }}{{strlen($post->body) > 80 ? '...' : ""}}</p>
 
-        <a href=" {{route('posts.show', $post->id) }}" class="btn btn-primary"> Lire la suite</a>
+        <a href=" {{route('blog.single', $post->id) }}" class="btn btn-primary"> Lire la suite</a>
         <br>
         </div>
     </div>

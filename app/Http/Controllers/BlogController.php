@@ -13,6 +13,12 @@ class BlogController extends Controller
 
         return view('blog.index')->with('posts',$posts);
     }
+    //récuperer un seul article 
+    public function getSingle($id){
+        $post =  Post::find($id);
+
+        return view('blog.single')->with('post',$post);
+    }
 
     
 }

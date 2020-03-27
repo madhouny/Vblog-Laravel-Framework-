@@ -23,7 +23,7 @@
                 <div class="post">
                     <h3>{{$post->title}}</h3>
                     <p>{{substr($post->body,0,300)}} {{strlen($post->body) > 300 ?'...' : ''}}</p>
-                <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Lire la suite</a>
+                <a href="{{route('blog.single', $post->id)}}" class="btn btn-primary">Lire la suite</a>
                 </div>
 
                 <hr>
