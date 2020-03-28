@@ -65,8 +65,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //Sauvegarder une nouvelle catégorie 
-    }
+        //
 
     /**
      * Show the form for editing the specified resource.
@@ -76,7 +75,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Récupérer la catégorie dans la base de donnée et l'affecter dans un variable
+        $categorie = Category::find($id);
+
+        // retourner la vue edit avec les deux  variables post & categories
+        return view('categories.edit')->withCategorie($categorie); 
     }
 
     /**
@@ -88,7 +91,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         //Valider les données
+         $this->validate($request, [
+
+            'name'=>'required'
+            
+        ]);
+    //Sauvegarder donnée vers database
+        $categorie = Category::find($id);
+   
+        $categorie->name = $request->input('name');
+
+        $categorie->save();
+
+    // flash data avec message de succes
+        Session::flash('Success','Modification a été bien prise en charge!');
+
+    //redirection vers categories.index
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -99,6 +119,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+          //Supprimer la catégorie à partir de son Id
+          $categorie = Category::find($id);
+          $categorie->delete();
+          Session::flash('success', 'la catégorie a été bien supprimer');
+          return redirect()->route('categories.index');
     }
 }

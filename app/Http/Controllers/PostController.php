@@ -144,7 +144,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Supprimer l'article à partir de son Id
         $post = Post::find($id);
         $post->delete();
         Session::flash('success', 'l article à été bien supprimer');
