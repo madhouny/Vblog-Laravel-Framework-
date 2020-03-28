@@ -20,6 +20,14 @@
         @method('PUT')
             <label  for="title"><Strong> Titre :</strong></label>
             <input required maxLength="100" class="form-control form-control-lg" type="text" name="title" value="{{$post->title}}">
+            <br>
+            <label  for="category_id"><Strong> Catégorie :</strong></label>
+                <select class="form-control" name="category_id" >
+                    @foreach ($categories as $categorie)
+                       <option value="{{$categorie->id}}">{{$categorie->name}}</option>    
+                   @endforeach
+               
+               </select>   
 
             <label class="form-spacing-top" for="body"><strong> Body :</strong></label>
             <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10" value="{{ $post->body}}">

@@ -23,6 +23,12 @@
             </dl>
             <hr>
 
+            <dl class="row">
+                <dt class="col-sm-6">Catégorie:</dt>
+            <dd class="col-sm-6">{{$post->category->name}}</dd>
+            </dl>
+            <hr>
+
             <div class="row">
                 <div class="col-sm-6">
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -24,7 +25,7 @@ class PostController extends Controller
         //Creer une variable qui regroupe tous les articles du blog limiter à 5 par pages,
             $posts = post::paginate(5);
 
-        // return view & passer la variable 
+        // retourner la vue & passer la variable dans la vue
             return view('posts.index')->with('posts',$posts);
     }
 
@@ -34,8 +35,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('posts/create');
+    {   
+        //récuperer tous les categories et les affecter à la variable $categories
+        $categories = Category::all();
+
+        //retourner la vue create avec la varibale $categories
+        return view('posts/create')->with('categories',$categories);
     }
 
     /**
@@ -46,15 +51,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //Valider les données
+        //Valider les données saisie 
             $this->validate($request, [
                 'title'=>'required|max:100',
-                'body'=>'required|max:1000'
+                'body'=>'required|max:1000',
+                'category_id'=>'required|integer'
+
             ]);
         //Sauvgarder les données dans database
                 $post = new Post;
                 $post->title = $request->title;
                 $post->body = $request->body;
+                $post->category_id = $request->category_id;
 
                 $post->save();
 
@@ -73,9 +81,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //Trouver article à l'aide de son Id
+        //récupérer l'article à travers son Id
         $post =  Post::find($id);
 
+        //Retourner la vue de l'article
         return view('posts.show')->with('post',$post);
     }
 
@@ -87,11 +96,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // Trouver l'article dans la base du donnée et l'affecter dans un variable
+        // Récupérer l'article dans la base de donnée et l'affecter dans un variable
         $post = Post::find($id);
 
-        // return view edit avec la variable
-        return view('posts.edit')->with('post',$post); 
+        //Récuprer les article depuis le model Category
+        $categories = Category::all();
+
+        // retourner la vue edit avec les deux  variables post & categories
+        return view('posts.edit')->with('post',$post)->withCategories($categories); 
     }
 
     /**
@@ -106,12 +118,14 @@ class PostController extends Controller
         //Valider les données
             $this->validate($request, [
                 'title'=>'required|max:100',
-                'body'=>'required|max:1000'
+                'body'=>'required|max:1000',
+                'category_id'=>'required|integer'
             ]);
         //Sauvegarder donnée vers database
             $post = Post::find($id);
             $post->title = $request->input('title');
             $post->body = $request->input('body');
+            $post->category_id =$request->input('category_id');
 
             $post->save();
 

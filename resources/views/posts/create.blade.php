@@ -16,12 +16,19 @@
             <hr>
         <form data-parsley-validate class="form-group" action="{{route('posts.store')}}" method="post">
             @csrf
-                <label  for="title">Titre :</label>
+                <label  for="title"><strong>Titre</strong> :</label>
                 <input required maxLength="100" class="form-control" type="text" name="title">
 
-                <label  for="body">Corps de L'article :</label>
+                <label for="categorie_id"><strong>Catégorie</strong> :</label>
+                <select class="form-control" name="category_id" >
+                     @foreach ($categories as $categorie)
+                        <option value="{{$categorie->id}}">{{$categorie->name}}</option>    
+                    @endforeach
+                
+                </select>
+                
+                <label  for="body"><strong>Corps de L'article :</strong></label>
                 <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10"></textarea>
-
                 <br>
                 <button class="btn btn-success btn-lg btn-block" > Ajouter un Article</button>
             </form>
