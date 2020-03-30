@@ -43,6 +43,7 @@
 
                     <a class="dropdown-item" href="{{route('categories.index')}}">Categories</a>
                     <a class="dropdown-item" href="{{route('posts.index')}}">Articles</a>
+                    <a class="dropdown-item" href="{{route('tags.index')}}">Tags</a>
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

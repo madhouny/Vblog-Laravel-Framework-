@@ -28,8 +28,10 @@ Route::group(['middleware'=>['web']], function(){
     Route::resource('posts','PostController');
     
     //Categories routes
-
     Route::resource('categories','CategoryController',['except'=> ['create']]);
+
+     //Tags routes
+     Route::resource('tags','TagController',['except'=> ['create']]);
 
 
 });
