@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
 {
-    //Pour créer une authentification 
+    //Protéger l'accés avec un Middleware 
     public function __construct(){
         $this->middleware('auth');
     }
@@ -39,8 +40,11 @@ class PostController extends Controller
         //récuperer tous les categories et les affecter à la variable $categories
         $categories = Category::all();
 
+        //récuperer tous les tags et les affecter à la variable $tags
+        $tags = Tag::all();
+
         //retourner la vue create avec la varibale $categories
-        return view('posts/create')->with('categories',$categories);
+        return view('posts/create')->with('categories',$categories)->with('tags',$tags);
     }
 
     /**
@@ -51,6 +55,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         //Valider les données saisie 
             $this->validate($request, [
                 'title'=>'required|max:100',
@@ -65,6 +72,10 @@ class PostController extends Controller
                 $post->category_id = $request->category_id;
 
                 $post->save();
+
+                //affeceter les tags au posts
+                $post->tags()->sync($request->tags, false);
+
 
          //Flash Messages
                 Session::flash('success','Article a été sauvegardé avec succès!');
@@ -99,11 +110,17 @@ class PostController extends Controller
         // Récupérer l'article dans la base de donnée et l'affecter dans un variable
         $post = Post::find($id);
 
-        //Récuprer les article depuis le model Category
+        //Récupérer les articles depuis le model Category
         $categories = Category::all();
+        
+        //Récupérer les tags depuis le model Tags
+        $tags = Tag::all();
 
-        // retourner la vue edit avec les deux  variables post & categories
-        return view('posts.edit')->with('post',$post)->withCategories($categories); 
+    
+        
+       
+        // retourner la vue edit avec les trois  variables post & categories et tags
+        return view('posts.edit')->with('post',$post)->withCategories($categories)->with('tags',$tags); 
     }
 
     /**
@@ -128,6 +145,9 @@ class PostController extends Controller
             $post->category_id =$request->input('category_id');
 
             $post->save();
+
+            $post->tags()->sync($request->tags);
+           
 
         // flash data avec message de succes
             Session::flash('Success','Article a été sauvegardé avec succès!');

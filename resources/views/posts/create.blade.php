@@ -26,6 +26,16 @@
                     @endforeach
                 
                 </select>
+
+                <label for="tags"><strong>Tags</strong> :</label>
+                <select class="form-control js-example-basic-multiple" name="tags[]" multiple="multiple">
+                     @foreach ($tags  as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>    
+                    @endforeach
+                
+                </select>
+
+
                 
                 <label  for="body"><strong>Corps de L'article :</strong></label>
                 <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10"></textarea>
@@ -38,5 +48,11 @@
 
 @section('scripts')
 <script src="{{URL::to('../../public/Javascript/parsley.min.js')}}"></script>
+
+<script type="text/javascript">
+    
+    $('.js-example-basic-multiple').select2();
+
+</script>
 @endsection
     
