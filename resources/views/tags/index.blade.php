@@ -22,16 +22,11 @@
                       
                     <tr>
                         <th>{{ $tag->id }}</th>
-                        <td>{{ $tag->name }}</td>
+                    <td> <a href="{{route('tags.show', $tag->id)}}">{{ $tag->name }}</a> </td>
                         
-                        {{--<td> <a href="{{route('categories.edit', $categorie->id)}}" class="btn btn-info btn-sm">Modifier</a> <br>
-                            <a class="col-sm-6">
-                                {!! Form::open(['route'=>['categories.destroy',$categorie->id],'method'=>'DELETE']) !!}
-                                {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
-            
-                                {!! Form::close() !!}
-                            </a> 
-                        </td>--}}
+                    <td> <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-info btn-sm">Modifier</a> <br>
+                         
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

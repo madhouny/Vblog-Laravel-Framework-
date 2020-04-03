@@ -95,14 +95,12 @@ class CategoryController extends Controller
          //Valider les données
          $this->validate($request, [
 
-            'name'=>'required'
+            'name'=>'required|255'
             
         ]);
-    //Sauvegarder donnée vers database
+        //Save Data
         $categorie = Category::find($id);
-   
         $categorie->name = $request->input('name');
-
         $categorie->save();
 
     // flash data avec message de succes

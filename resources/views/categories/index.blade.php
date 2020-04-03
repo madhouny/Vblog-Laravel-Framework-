@@ -22,10 +22,9 @@
                       
                     <tr>
                         <th>{{ $categorie->id }}</th>
-                        <td>{{ $categorie->name }}</td>
-                        <td> <a href="{{route('categories.edit', $categorie->id)}}" class="btn btn-info btn-sm">Modifier</a> <br>
-                            <a class="col-sm-6">
-                                {!! Form::open(['route'=>['categories.destroy',$categorie->id],'method'=>'DELETE']) !!}
+                        <td> <a href="{{route('categories.edit', $categorie->id)}}">{{ $categorie->name }}</a> </td>        
+                        <td>    <a class="col-sm-6">
+                                {!! Form::open(['route'=>['categories.destroy',$categorie->id],'method'=>'DELETE', ]) !!}
                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
             
                                 {!! Form::close() !!}
