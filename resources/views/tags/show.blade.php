@@ -9,10 +9,15 @@
     <div class="col-md-8">
         <h1>{{ $tag->name }} Tag <small>{{ $tag->posts()->count() }} Articles</small> </h1>
     </div>
-    <div class="col-md-4">
-        
-    <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-primary float-right" style="margin-top:20px">Modifier</a>
-    </div>    
+    <div class="col-md-2">  
+        <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-primary float-right" style="margin-top:10px">Modifier</a>
+    </div>   
+    <div class="col-md-2">
+        {{Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'DELETE'])}}
+            {{Form::submit('Delete', ['class'=>'btn btn-danger ', 'style'=>'margin-top:10px'])}}
+        {{Form::close()}}
+    </div> 
+
 </div>
 
 <div class="row">

@@ -20,7 +20,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //Récuprer tous les tag depuis Tag Model
+        //Recupérer tous les tag depuis Tag Model
         $tags = Tag::all();
 
         //Retourner la vue avec la variable $tags
@@ -114,6 +114,15 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // récuperer chaque tag via son ID qui fait réference au Post Model
+        $tag = Tag::find($id);
+        $tag->posts()->detach();
+
+        //Supprimer le tag
+        $tag->delete();
+
+        //Afficher un message flash et redirection vers  la page index 
+        Session::flash('sucesss', 'Tag a été bien supprimé');
+        return redirect()->route('tags.index');
     }
 }

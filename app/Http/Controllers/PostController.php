@@ -164,9 +164,16 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //Supprimer l'article à partir de son Id
+        //recupérer l'article à partir de son Id
         $post = Post::find($id);
+
+        //récuperer les articles référent a leurs tags
+        $post->tags()->detach();
+
+        //Supprimer les articles
         $post->delete();
+
+        //Afficher un flash message et redirection vers la page index
         Session::flash('success', 'l article à été bien supprimer');
         return redirect()->route('posts.index');
     }
