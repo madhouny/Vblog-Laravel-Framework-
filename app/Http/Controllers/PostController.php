@@ -56,8 +56,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-
-
         //Valider les données saisie 
             $this->validate($request, [
                 'title'=>'required|max:100',

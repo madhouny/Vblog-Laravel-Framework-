@@ -33,13 +33,13 @@
             <label  for="tags"><Strong> Tags :</strong></label>
                 <select class="form-control js-example-basic-multiple" name="tags[]" multiple="multiple" >
                     @foreach ($tags as $tag)
-                       <option value="{{$tag->id}}">{{$tag->name}}</option>    
+                       <option value="{{$tag->id}}"> {{$tag->name}}</option>    
                    @endforeach
                
                </select>      
 
             <label class="form-spacing-top" for="body"><strong> Body :</strong></label>
-            <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10" value="{{ $post->body}}">
+            <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10" >{{ $post->body}}
             </textarea>
     
     </div>
