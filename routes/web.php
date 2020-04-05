@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['web']], function(){
    
-
+    //Blog routes
     Route::get('/blog','BlogController@getIndex')->name('blog.index');
     Route::get('/blog/{id}','BlogController@getSingle')->name('blog.single');
         
     
-    Route::get('/contact', 'PagesController@getContact');
-    Route::get('/about', 'PagesController@getAbout');
+    Route::get('/contact', 'PagesController@getContact')->name('getContact');
+    Route::post('/postcontact', 'PagesController@postContact')->name('postContact');
+    Route::get('/about', 'PagesController@getAbout')->name('about');
     Route::get('/', 'PagesController@getIndex')->name('home');
     Route::resource('posts','PostController');
     
@@ -33,6 +34,10 @@ Route::group(['middleware'=>['web']], function(){
      //Tags routes
      Route::resource('tags','TagController',['except'=> ['create']]);
 
+     //Commentaire routes
+     Route::post('comments/{post_id}',[
+         'uses'=>'CommentsController@store',
+        'as'=>'comments.store']);
 
 });
 

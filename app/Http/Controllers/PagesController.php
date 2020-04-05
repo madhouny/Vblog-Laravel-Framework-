@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Post;
+use Mail;
+use Session;
 class PagesController extends Controller
 {
     public function getIndex(){
@@ -22,4 +25,34 @@ class PagesController extends Controller
     public function getContact(){
         return view('pages.contact');
     }
+
+    
+    public function postContact(Request $request){
+        //Validation data
+        $this->validate($request, [
+            'email'=>'required|email',
+            'sujet'=>'required|min:3',
+            'message'=>'required|min:10'
+            ]);
+
+    $data = array(
+        'email'=> $request->email,
+        'sujet'=> $request->sujet,
+        'bodyMessage'=> $request->message
+    );
+
+    //Envoyer les Email on utilisant façade Mail et Mailtrap.io configuré dans .env
+
+    //Mail::send('view', $data, function())
+    Mail::send('emails.contacts', $data, function($message) use($data){
+            $message->from($data['email']);
+            $message->to('younes.madhoun@gmail.com');
+            $message->subject($data['sujet']);
+    });
+
+
+    //Affichage du Message dans la vue contact
+    Session::flash('success', 'Votre Email a été Envoyé');
+    return redirect()->back();
+}
 }
