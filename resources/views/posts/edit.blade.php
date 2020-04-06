@@ -6,6 +6,14 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{URL::to('../../public/css/parsley.css')}}">
+    <script src="https://cdn.tiny.cloud/1/8eq79l746qnxp5t0xhqk6rp52ybrquybwyxc0l6h89ivw5td/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+         
+        });
+      </script>
     
 @endsection
 

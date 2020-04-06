@@ -1,12 +1,19 @@
 @extends('main')
 
 @section('title')
-<title>Nouveau Article</title>
+<title>Créer un Nouveau Article</title>
 @endsection
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{URL::to('../../public/css/parsley.css')}}">
-    
+    <script src="https://cdn.tiny.cloud/1/8eq79l746qnxp5t0xhqk6rp52ybrquybwyxc0l6h89ivw5td/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+         
+        });
+      </script>
 @endsection
     
 @section('content')
@@ -38,7 +45,7 @@
 
                 
                 <label  for="body"><strong>Corps de L'article :</strong></label>
-                <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10"></textarea>
+                <textarea  maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10"></textarea>
                 <br>
                 <button class="btn btn-success btn-lg btn-block" > Ajouter un Article</button>
             </form>
