@@ -9,6 +9,13 @@ use Session;
 
 class CommentsController extends Controller
 {
+
+    //Protéger la route avec un middleware , sauf la fonction Store.
+    public function __construct(){
+        $this->middleware('auth', ['except'=>'store']);
+    }
+
+
     public function store(Request $request, $post_id)
     {
         //Validation data
@@ -58,6 +65,27 @@ class CommentsController extends Controller
 
         Session::flash('success', 'Commentaire mis à jour');
         return redirect()->route('posts.show', $comment->post->id);
+    }
+
+    public function delete($id){
+        //Récuperer le commentaire via son ID et le retourner dans la vue delete
+        $comment = Comment::find($id);
+        return view('comments.delete')->with('comment', $comment);
+    }
+
+    public function destroy($id){
+
+        //Récuperer le commentaire depuis la base de donnée et le supprimer
+        $comment = Comment::find($id);
+        $post_id = $comment->post->id;
+        $comment->delete();
+
+
+        // redirection vers la page show avec le flash Message
+        Session::flash('success', 'Commentaire Supprimé!');
+        return redirect()->route('posts.show', $post_id);
+
+
     }
     
     
