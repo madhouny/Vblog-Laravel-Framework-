@@ -36,8 +36,28 @@ class CommentsController extends Controller
         Session::flash('success', 'Commentaire a été bien ajouté');
         return redirect()->back();
 
+    }
 
+    public function edit($id){
+        // Récuperer le commentaire avec son ID et retourner la page edit  
+        $comment = Comment::find($id);
+        return view('comments.edit')->with('comment', $comment);
 
+    }
+
+    public function update(Request $request,$id){
+        //Récuperer le commentaire par son ID
+        $comment = Comment::find($id);
+
+        // validate data
+        $this->validate($request, array('comment'=>'required'));
+
+        //Mettre à jour la variable $comment
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        Session::flash('success', 'Commentaire mis à jour');
+        return redirect()->route('posts.show', $comment->post->id);
     }
     
     

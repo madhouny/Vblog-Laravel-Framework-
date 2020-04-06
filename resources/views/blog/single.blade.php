@@ -10,7 +10,7 @@
         <h1>{{$post->title}}</h1>
         <p>{{$post->body}}</p>
         <hr>
-        <p> <strong>Publié dans : {{$post->category->name}}</strong> </p>
+        <p class="post-category"> Publié dans : {{$post->category->name}} </p>
         </div>
     </div>
 
