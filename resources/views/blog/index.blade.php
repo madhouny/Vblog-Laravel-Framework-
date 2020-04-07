@@ -18,8 +18,8 @@
             <h3>{{$post->title}}</h2>
             <h5 class="text-muted">Publié: {{ date('M j, Y', strtotime($post->created_at))}}</h5>
         <p>{{ substr(strip_tags($post->body),0,100) }}{{strlen(strip_tags($post->body)) > 80 ? '...' : ""}}</p>
-
         <a href=" {{route('blog.single', $post->id) }}" class="btn btn-primary"> Lire la suite</a>
+        <br>
         <br>
         </div>
     </div>

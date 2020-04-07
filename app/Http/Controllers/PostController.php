@@ -7,6 +7,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use Session;
+use Image;
 
 class PostController extends Controller
 {
@@ -60,15 +61,35 @@ class PostController extends Controller
             $this->validate($request, [
                 'title'=>'required|max:100',
                 'body'=>'required|max:1000',
-                'category_id'=>'required|integer'
+                'category_id'=>'required|integer',
+                'image'=>'image|nullable|max:1999'
 
             ]);
-        //Sauvgarder les données dans database
+                //Sauvgarder les données dans database
                 $post = new Post;
                 $post->title = $request->title;
                 $post->body = $request->body;
                 $post->category_id = $request->category_id;
 
+                //Save our Image
+                if($request->hasFile('image')){
+                    // Avoir filename avec l'extension
+                    $image = $request->file('image')->getClientOriginalName();
+                    // Avoir seulement le nom du fichier
+                    $filename= pathinfo($image, PATHINFO_FILENAME);
+                    //récupérer seulement l'extension
+                    $extension = $request->file('image')->getClientOriginalExtension();
+                    //filename à sauvegarder
+                    $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                    // Upload Image
+                    $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+
+                }else{
+
+                    $fileNameToStore = 'noimage.jpg';
+                }
+
+                $post->image = $fileNameToStore;
                 $post->save();
 
                 //affeceter les tags au posts

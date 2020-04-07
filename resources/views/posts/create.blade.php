@@ -11,6 +11,8 @@
     <script>
         tinymce.init({
           selector: 'textarea',
+          toolbar: "image",
+            plugins:   "image imagetools"
          
         });
       </script>
@@ -21,7 +23,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Créer un Nouveau Article</h1>
             <hr>
-        <form data-parsley-validate class="form-group" action="{{route('posts.store')}}" method="post">
+        <form data-parsley-validate class="form-group" action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
                 <label  for="title"><strong>Titre</strong> :</label>
                 <input required maxLength="100" class="form-control" type="text" name="title">
@@ -42,7 +44,10 @@
                 
                 </select>
 
+                {{Form::label('image', 'Upload Image')}}
 
+                {{Form::file('image')}}
+                <br>
                 
                 <label  for="body"><strong>Corps de L'article :</strong></label>
                 <textarea  maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10"></textarea>
