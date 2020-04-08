@@ -23,7 +23,7 @@
 
     <div class="col-md-8 ">
     
-    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="post">
+    <form data-parsley-validate  class="form-group" action="{{route('posts.update', $post->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
             <label  for="title"><Strong> Titre :</strong></label>
@@ -44,8 +44,12 @@
                        <option value="{{$tag->id}}"> {{$tag->name}}</option>    
                    @endforeach
                
-               </select>      
+               </select>  
+               
+               {{Form::label('image', 'Update Image',['class'=>'form-spacing-top'])}}
+               {{Form::file('image')}}
 
+               <br>
             <label class="form-spacing-top" for="body"><strong> Body :</strong></label>
             <textarea required maxLength="1000" class="form-control" name="body" id="" cols="30" rows="10" >{{ $post->body}}
             </textarea>

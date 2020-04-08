@@ -11,8 +11,7 @@
     <script>
         tinymce.init({
           selector: 'textarea',
-          toolbar: "image",
-            plugins:   "image imagetools"
+          
          
         });
       </script>

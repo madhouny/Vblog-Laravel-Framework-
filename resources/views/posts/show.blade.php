@@ -6,6 +6,9 @@
 @section('content')
 <div class="row">
     <div class="col-md-8">
+
+        <img src="/storage/images/{{$post->image}}" height="400" width="600" alt="">
+
         <h1>{{$post->title}}</h1>
         <p class="lead"> {!!$post->body!!}</p>
 

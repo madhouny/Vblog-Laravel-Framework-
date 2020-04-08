@@ -8,6 +8,7 @@ use App\Category;
 use App\Tag;
 use Session;
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -134,10 +135,7 @@ class PostController extends Controller
         
         //Récupérer les tags depuis le model Tags
         $tags = Tag::all();
-
-    
         
-       
         // retourner la vue edit avec les trois  variables post & categories et tags
         return view('posts.edit')->with('post',$post)->withCategories($categories)->with('tags',$tags); 
     }
@@ -155,14 +153,37 @@ class PostController extends Controller
             $this->validate($request, [
                 'title'=>'required|max:100',
                 'body'=>'required|max:1000',
-                'category_id'=>'required|integer'
+                'category_id'=>'required|integer',
+                'image'=>'image|nullable|max:1999'
             ]);
         //Sauvegarder donnée vers database
             $post = Post::find($id);
             $post->title = $request->input('title');
             $post->body = $request->input('body');
             $post->category_id =$request->input('category_id');
+            
+            if($request->hasFile('image')){
+                //Ajouter les nouvelles images
+                   // Avoir filename avec l'extension
+                   $image = $request->file('image')->getClientOriginalName();
+                   // Avoir seulement le nom du fichier
+                   $filename= pathinfo($image, PATHINFO_FILENAME);
+                   //récupérer seulement l'extension
+                   $extension = $request->file('image')->getClientOriginalExtension();
+                   //filename à sauvegarder
+                   $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                   // Upload Image
+                   $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
 
+                   //Recupérer les anciens photos
+                   $oldFileName = $post->image;
+                   //Update database
+                     $post->image = $fileNameToStore;
+                    //Supprimer les anciens photos
+                    Storage::delete($oldFileName); 
+
+               }
+            
             $post->save();
 
             $post->tags()->sync($request->tags);
@@ -188,6 +209,10 @@ class PostController extends Controller
 
         //récuperer les articles référent a leurs tags
         $post->tags()->detach();
+
+        //Supprimer image relative à l'article
+        Storage::delete('public/images/'.$post->image);
+
 
         //Supprimer les articles
         $post->delete();
