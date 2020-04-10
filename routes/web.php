@@ -28,6 +28,9 @@ Route::group(['middleware'=>['web']], function(){
     Route::get('/', 'PagesController@getIndex')->name('home');
     Route::resource('posts','PostController');
     
+
+    //User routes
+    Route::resource('users', 'UserController', ['except'=>['show', 'create', 'store']]);
     //Categories routes
     Route::resource('categories','CategoryController',['except'=> ['create']]);
 
