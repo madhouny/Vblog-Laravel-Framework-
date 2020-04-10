@@ -74,7 +74,7 @@ class UserController extends Controller
         $user->save();
 
          //Afficher un flash message et redirection vers la page index
-         Session::flash('success', 'Role Utilisateur Modifié');
+         Session::flash('success', ' Utilisateur Modifié');
 
         return redirect()->route('users.index');
     }
@@ -101,7 +101,7 @@ class UserController extends Controller
         $user->delete();
 
         //Afficher un flash message et redirection vers la page index
-        Session::flash('success', 'Role Utilisateur Supprimer');
+        Session::flash('success', ' Utilisateur Supprimé!');
 
         // redirection vers la page index
         return redirect()->route('users.index');
