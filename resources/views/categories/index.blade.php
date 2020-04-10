@@ -23,12 +23,12 @@
                     <tr>
                         <th>{{ $categorie->id }}</th>
                         <td> <a href="{{route('categories.edit', $categorie->id)}}">{{ $categorie->name }}</a> </td>        
-                        <td>    <a class="col-sm-6">
+                        <td>    
                                 {!! Form::open(['route'=>['categories.destroy',$categorie->id],'method'=>'DELETE', ]) !!}
-                                {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
+                                {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm  float-left']) !!}
             
                                 {!! Form::close() !!}
-                            </a> 
+                            
                         </td>
                     </tr>
                     @endforeach

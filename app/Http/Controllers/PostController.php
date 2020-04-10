@@ -93,7 +93,7 @@ class PostController extends Controller
                 $post->image = $fileNameToStore;
                 $post->save();
 
-                //affeceter les tags au posts
+                //Créer des associations de type "Many to many entre Tags et posts
                 $post->tags()->sync($request->tags, false);
 
 
@@ -185,12 +185,12 @@ class PostController extends Controller
                }
             
             $post->save();
-
+            // Créer des associations de type "Many to many
             $post->tags()->sync($request->tags);
            
 
         // flash data avec message de succes
-            Session::flash('Success','Article a été sauvegardé avec succès!');
+         Session::flash('Success','Article a été sauvegardé avec succès!');
 
         //redirection vers posts.show
             return redirect()->route('posts.show', $post->id);
@@ -207,7 +207,7 @@ class PostController extends Controller
         //recupérer l'article à partir de son Id
         $post = Post::find($id);
 
-        //récuperer les articles référent a leurs tags
+        //supprimer une certaine relation d'entité
         $post->tags()->detach();
 
         //Supprimer image relative à l'article

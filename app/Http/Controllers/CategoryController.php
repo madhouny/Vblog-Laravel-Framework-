@@ -95,7 +95,7 @@ class CategoryController extends Controller
          //Valider les données
          $this->validate($request, [
 
-            'name'=>'required|255'
+            'name'=>'required'
             
         ]);
         //Save Data

@@ -12,6 +12,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Roles</th>
                 <th>Action</th>
              </thead> 
              <tbody>
@@ -21,8 +22,13 @@
                         <th> {{ $user->id }} </th>
                         <td> {{ $user->name }} </td>
                         <td> {{ $user->email }} </td>
-                         <td> <a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-primary">Modifier</button> </a>
-                           <a href="{{route('users.destroy', $user->id)}}" ><button type="button" class="btn btn-warning">Supprimer</button> </a>
+                        <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray())}}</td>
+                         <td> <a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-primary" class="float-left" style="margin-left:5px"> Modifier</button> </a>
+                           <form action="{{route('users.destroy', $user)}} " method="POST" class="float-left" >
+                             @csrf
+                             @method('DELETE')
+                             <button type="submit" class="btn btn-warning">Supprimer</button> 
+                            </form> 
                         </td>
                         
                     </tr>

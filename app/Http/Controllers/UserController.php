@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
+use Session;
 
 class UserController extends Controller
 {
@@ -27,7 +29,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Récuperer tous les roles 
+        $roles = Role::all();
+
+        //retourner la vue edit avec le role et Id de l'user
+        return view('users.edit')->with([
+            'user'=>$id,
+            'roles'=>$roles
+        ]);
     }
 
     /**
@@ -39,7 +48,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Récuperer l'user par son ID
+        $user = User::find($id);
+        // Créer des associations de type "Many to many
+        $user->roles()->sync($request->roles);
+
+         //Afficher un flash message et redirection vers la page index
+         Session::flash('success', 'Role Utilisateur Modifié');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -49,7 +66,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+         //Récuperer l'user par son ID
+         $user = User::find($id);
+         
+        //supprimer la relation d'entité entre user et son role
+        $user->roles()->detach();
+        $user->delete();
+
+        //Afficher un flash message et redirection vers la page index
+        Session::flash('success', 'Role Utilisateur Supprimer');
+
+        // redirection vers la page index
+        return redirect()->route('users.index');
     }
 }
