@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-         //Définir les Roles  utilisateurs  on utilisant Gates Façade 
+         //Définir les Roles  utilisateurs  on utilisant Gates Façade seulement pour admin et Auteur  
          Gate::define('manage-users', function($user){
             return $user->hasAnyRoles(['admin','author']);
         });

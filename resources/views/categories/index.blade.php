@@ -24,11 +24,13 @@
                         <th>{{ $categorie->id }}</th>
                         <td> <a href="{{route('categories.edit', $categorie->id)}}">{{ $categorie->name }}</a> </td>        
                         <td>    
+                            @can('delete-users')
+                              
                                 {!! Form::open(['route'=>['categories.destroy',$categorie->id],'method'=>'DELETE', ]) !!}
                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm  float-left']) !!}
             
                                 {!! Form::close() !!}
-                            
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

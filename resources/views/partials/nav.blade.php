@@ -40,11 +40,14 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
+                    @can('manage-users')
+                        
+                    
                     <a class="dropdown-item" href="{{route('categories.index')}}">Categories</a>
                     <a class="dropdown-item" href="{{route('posts.index')}}">Articles</a>
                     <a class="dropdown-item" href="{{route('tags.index')}}">Tags</a>
 
+                    @endcan
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -52,8 +55,6 @@
                     </a>
 
                     @can('manage-users')
-                        
-                    
                     <a href="{{route('users.index')}}" class="dropdown-item"> User Management</a>
                     @endcan
         

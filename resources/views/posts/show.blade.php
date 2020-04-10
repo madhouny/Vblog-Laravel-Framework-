@@ -82,10 +82,15 @@
                 </div>
 
                 <div class="col-sm-6">
+                    @can('delete-users')
+                        
+                    
                     {!! Form::open(['route'=>['posts.destroy',$post->id],'method'=>'DELETE']) !!}
                     {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-block']) !!}
 
                     {!! Form::close() !!}
+
+                    @endcan
                 </div>
             </div>
 

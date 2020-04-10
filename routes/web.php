@@ -26,16 +26,16 @@ Route::group(['middleware'=>['web']], function(){
     Route::post('/postcontact', 'PagesController@postContact')->name('postContact');
     Route::get('/about', 'PagesController@getAbout')->name('about');
     Route::get('/', 'PagesController@getIndex')->name('home');
-    Route::resource('posts','PostController');
+    Route::resource('posts','PostController')->middleware('can:manage-users');;
     
 
     //User routes
     Route::resource('users', 'UserController', ['except'=>['show', 'create', 'store']])->middleware('can:manage-users');
     //Categories routes
-    Route::resource('categories','CategoryController',['except'=> ['create']]);
+    Route::resource('categories','CategoryController',['except'=> ['create']])->middleware('can:manage-users');
 
      //Tags routes
-     Route::resource('tags','TagController',['except'=> ['create']]);
+     Route::resource('tags','TagController',['except'=> ['create']])->middleware('can:manage-users');
 
      //Commentaire routes
      Route::post('comments/{post_id}',[ 'uses'=>'CommentsController@store','as'=>'comments.store']);
