@@ -218,7 +218,7 @@ class PostController extends Controller
         $post->delete();
 
         //Afficher un flash message et redirection vers la page index
-        Session::flash('success', 'l article à été bien supprimer');
+        Session::flash('success', 'Article Supprimé!');
         return redirect()->route('posts.index');
     }
 }
