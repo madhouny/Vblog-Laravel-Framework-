@@ -43,9 +43,12 @@ class UserController extends Controller
         //Récuperer tous les roles 
         $roles = Role::all();
 
+        //
+        $user = User::find($id);
+
         //retourner la vue edit avec le role et Id de l'user
         return view('users.edit')->with([
-            'user'=>$id,
+            'user'=>$user,
             'roles'=>$roles
         ]);
     }
@@ -63,6 +66,12 @@ class UserController extends Controller
         $user = User::find($id);
         // Créer des associations de type "Many to many
         $user->roles()->sync($request->roles);
+
+        //Valider les champs name et email pour les mis à jour
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
 
          //Afficher un flash message et redirection vers la page index
          Session::flash('success', 'Role Utilisateur Modifié');
