@@ -30,7 +30,7 @@ Route::group(['middleware'=>['web']], function(){
     
 
     //User routes
-    Route::resource('users', 'UserController', ['except'=>['show', 'create', 'store']]);
+    Route::resource('users', 'UserController', ['except'=>['show', 'create', 'store']])->middleware('can:manage-users');
     //Categories routes
     Route::resource('categories','CategoryController',['except'=> ['create']]);
 

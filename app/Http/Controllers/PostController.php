@@ -9,6 +9,7 @@ use App\Tag;
 use Session;
 use Image;
 use Storage;
+//use Gate;
 
 class PostController extends Controller
 {
@@ -38,7 +39,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {   
+       
+
         //récuperer tous les categories et les affecter à la variable $categories
         $categories = Category::all();
 

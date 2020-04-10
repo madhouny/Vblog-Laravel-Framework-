@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Session;
+use Gate;
 
 class UserController extends Controller
-{
+{   
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +35,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //Vérifier si l'utilisateur a la permission de modifier users si il a seulement le role ADMIN
+        if(Gate::denies('edit-users')){
+            return redirect()->route('users.index');
+        }
+
         //Récuperer tous les roles 
         $roles = Role::all();
 
@@ -67,9 +78,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {   
+
+        //Vérifier si l'utilisateur a la permission de supprimer un utilisateur si il a seulement le role ADMIN
+        if(Gate::denies('delete-users')){
+            return redirect()->route('users.index');
+        }
+
          //Récuperer l'user par son ID
          $user = User::find($id);
-         
+
         //supprimer la relation d'entité entre user et son role
         $user->roles()->detach();
         $user->delete();
