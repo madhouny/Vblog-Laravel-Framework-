@@ -52,10 +52,15 @@ A partir de là, deux lignes nous intéresse et nous allons les modifier :
 
 
 ### h. Ajout des tables et contenus de la base de donnée avec la migration
-Les migrations dans Laravel permettent d’avoir toute l’architecture de la base de données. Normalement nous somme toujours dans **..\Vblog\**
+Les migrations dans Laravel permettent d’avoir toute l’architecture de la base de données. Normalement nous somme toujours dans **..\Vblog\** 
 Sous linux ou Windows utiliser la commande : **php artisan migrate**
-Sous Linux ou Windows, utiliser la commande : **php artisan migrate:fresh --seed**
-### i. Lancement du server Artisan
+### i. Copier le fichier database.sqlite en pièce jointe et storage
+Nous avons rencontrer des problèmes avec l'importation des données, en effet, ne savant pourquoi la database.sqlite est vide. Idem pour les articles, etc...
+Un souci de clonage avec github ? Le projet sur la machine de Younes marchant très bien, mais dès lors qu'il y a clonage des problèmes sont rencontrés comme vu ci-avant.
+- Il faut donc coller dans **..\Vblog\database** le fichier database.sqlite en pièce jointe
+- Utiliser la commande **php artisan db:seed**
+- Coller le fichier storage en pièce jointe du mail dans le **..Vblog\public**
+### j. Lancement du server Artisan
 Il nous reste plus qu'à lancer le serveur.
 Utiliser la commande sous Linux ou Windows : **php artisan serve** 
 Puis ouvrir un navigateur et entrer http://127.0.0.1:8000/
@@ -145,7 +150,7 @@ C’est un éditeur de texte utilisé au moment de la création des articles, il
 La fonctionnalité « images » permet d’ajouter au moment de la création d’un article, une image en utilisant le StorageFile façade. Les différentes images ajoutées sont stockées dans le dossier storages/images.
 
 ### Rôle utilisateurs 
-Pour le faire, nous avons créé un CRUD User ainsi que deux seeders : Roles-Table-Seeder et     User-Table-Seeder avec la commande : php artisan make :seed ... afin de fixer les rôles     utilisateurs : 3 rôles sont définies : admin, author, user
+Pour le faire, nous avons créé un CRUD User ainsi que deux seeders : Roles-Table-Seeder et     User-Table-Seeder avec la commande : **php artisan make :seed** ... afin de fixer les rôles     utilisateurs : 3 rôles sont définies : admin, author, user
 Pour contrôler l’accès à certaines fonctionnalités, on a utilisé Gates façade dans auth-    service-provider, ici nous avons défini les rôles des utilisateurs. Par exemple : 
 Le rôle admin, il permettra de gérer toutes les fonctionnalités du blog, mais aussi l’ajout et la suppression des articles, commentaires, tags, catégories etc… 
 Ainsi l’admin pourra gérer les utilisateurs, supprimer et assigner des nouveaux rôles à ceux-ci.
