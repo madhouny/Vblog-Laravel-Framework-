@@ -2,18 +2,34 @@
 @section('title')
    <title>Laravel Blog | Page d'accueil</title> 
 @endsection
+
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+
+   
+   
+    </style>
+@endsection
+
 @section('content')
     
     <div class="row">
         <div class="col-md-12">
-            <div class="jumbotron">
-                <h1 class="display-4">Bienvenue dans mon Blog</h1>
-                <p class="text-muted">Merci de votre visite. Ceci est mon site test créer avec laravel</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Articles Populaires</a>
-            </div>
+            
+            <h1 class="display-4">Bienvenue sur Notre Blog !</h1>
+             <p class="text-muted">Merci de votre visite. Ce Blog est Crée avec Laravel Framework</p>
+             <!--<div class="jumbotron bg-cover" >
+             
+                
+            </div>-->
+            <img src="/storage/images/CANVA.jpg" alt="" width="100%" height="80%">
         </div>
     </div>
-
+    <br>
     <div class="row">
         <div class="col-md-8">
 
@@ -32,10 +48,6 @@
 
             
         </div>
-
-            <div class="col-md-3 col-md-offset-1">
-                <h2>Sidebar</h2>
-            </div>
     </div>
 @endsection
 

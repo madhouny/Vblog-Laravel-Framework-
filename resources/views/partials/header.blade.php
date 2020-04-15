@@ -1,7 +1,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -16,4 +16,8 @@
     @yield('stylesheets')
 
     @yield('title')
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2&display=swap');
+        </style>
 </head>

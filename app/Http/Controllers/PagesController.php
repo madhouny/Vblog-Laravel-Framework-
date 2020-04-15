@@ -11,8 +11,8 @@ class PagesController extends Controller
 {
     public function getIndex(){
 
-        //récupérer les derniers articles depuis database
-        $posts = Post::orderBy('created_at','desc')->limit(4)->get();
+        //récupérer les 3 derniers articles depuis database , 
+        $posts = Post::orderBy('created_at','desc')->limit(3)->get();
         return view('pages.welcome')->with('posts',$posts);
     }
 

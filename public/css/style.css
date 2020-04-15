@@ -56,3 +56,82 @@
     color:grey;
 }
 
+
+
+
+  .text-muted{
+    font-size: 18px;
+    font-style: italic;
+    color: indianred;
+    text-align: center;
+    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Bangers', cursive;
+    font-family: 'Caveat', cursive;
+  }
+
+  .blog-title{
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 36px;
+  }
+
+  .navbar {
+    background: linear-gradient(-90deg, #84CF6A, #16C0B0);
+    height: 60px;
+    margin-bottom: 15px;
+  }
+  .display-4{
+      text-align: center;
+      font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Bangers', cursive;
+  }
+
+  .nav-item{
+    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Bangers', cursive;
+    font-family: 'Caveat', cursive;
+  }
+
+  .navbar-brand{
+    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Bangers', cursive;
+    font-family: 'Caveat', cursive;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 50px;
+  }
+
+  .blog-index{
+    text-align: center;
+    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Bangers', cursive;
+    color: red;
+    
+    
+  }
+
+  .footer-text{
+    font-family: 'Just Another Hand', cursive;
+    text-align: center;
+  }
+  .about-us{
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .about-body{
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+  }
+
+  h3{
+    font-family: 'Lexend Giga', sans-serif;
+font-family: 'Bangers', cursive;
+  }
+
+  .single-title{
+    font-family: 'Lexend Giga', sans-serif;
+    font-family: 'Bangers', cursive;
+    font-family: 'Rubik Mono One', sans-serif;
+    }

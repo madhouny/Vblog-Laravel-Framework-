@@ -9,6 +9,7 @@ use App\Tag;
 use Session;
 use Image;
 use Storage;
+use Gate;
 //use Gate;
 
 class PostController extends Controller
@@ -26,6 +27,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        
+
         //Creer une variable qui regroupe tous les articles du blog limiter à 5 par pages,
             $posts = post::paginate(5);
 
@@ -65,7 +68,7 @@ class PostController extends Controller
         //Valider les données saisie 
             $this->validate($request, [
                 'title'=>'required|max:100',
-                'body'=>'required|max:1000',
+                'body'=>'required|max:2000',
                 'category_id'=>'required|integer',
                 'image'=>'image|nullable|max:1999'
 
@@ -102,7 +105,7 @@ class PostController extends Controller
 
 
          //Flash Messages
-                Session::flash('success','Article a été sauvegardé avec succès!');
+                Session::flash('success','Article ajouté avec succès');
 
         //Rediriger vers autre page
             return redirect()->route('posts.show', $post->id);
@@ -131,6 +134,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+         //Seulement l'admin et author peuvent editer un article 
+         if(Gate::denies('edit-users')){
+            return redirect()->back();
+        }
         // Récupérer l'article dans la base de donnée et l'affecter dans un variable
         $post = Post::find($id);
 
@@ -153,10 +160,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+         //Seulement l'admin et author peuvent editer un article 
+         if(Gate::denies('edit-users')){
+            return redirect()->back();
+        }
         //Valider les données
             $this->validate($request, [
                 'title'=>'required|max:100',
-                'body'=>'required|max:1000',
+                'body'=>'required|max:2000',
                 'category_id'=>'required|integer',
                 'image'=>'image|nullable|max:1999'
             ]);
@@ -194,7 +206,7 @@ class PostController extends Controller
            
 
         // flash data avec message de succes
-         Session::flash('Success','Article a été sauvegardé avec succès!');
+         Session::flash('success','Article mis à jour avec succès!');
 
         //redirection vers posts.show
             return redirect()->route('posts.show', $post->id);
@@ -208,6 +220,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+
+         //Seulement l'admin et author peuvent supprimer un article 
+         if(Gate::denies('edit-users')){
+            return redirect()->back();
+        }
         //recupérer l'article à partir de son Id
         $post = Post::find($id);
 
@@ -222,7 +239,7 @@ class PostController extends Controller
         $post->delete();
 
         //Afficher un flash message et redirection vers la page index
-        Session::flash('success', 'Article Supprimé!');
+        Session::flash('success', 'Article Supprimé avec succés');
         return redirect()->route('posts.index');
     }
 }

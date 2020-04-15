@@ -4,12 +4,23 @@
 <title>{{ $post->title }}</title>
 @endsection
 
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8 offset-md-2">
 
-        <img src="/storage/images/{{$post->image}}" height="400" width="800" alt="">   
-        <h1>{{$post->title}}</h1>
+        <h1 class="single-title">{{$post->title}}</h1>
+        <br>
+        <img src="/storage/images/{{$post->image}}" height="400" width="800" alt=""> 
         <p>{!! $post->body !!}</p>
         <hr>
         <p class="post-category"> Publié dans : {{$post->category->name}} </p>

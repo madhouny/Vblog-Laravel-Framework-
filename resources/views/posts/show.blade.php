@@ -3,6 +3,16 @@
     <title>Affichage de l'article</title>
 @endsection
 
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-8">
@@ -15,7 +25,7 @@
         <hr>
     <div class="tags">
         @foreach ($post->tags as $tag)
-            <span class="badge badge-light">{{$tag->name}}</span>
+            <span class="badge badge-secondary">{{$tag->name}}</span>
         @endforeach
     </div>
 

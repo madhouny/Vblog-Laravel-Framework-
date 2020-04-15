@@ -1,5 +1,5 @@
 
 <hr>
 
-<p class="text-center"> Copyright MIASHS - All rights Reserved</p>
+<p class="footer-text"> Copyright MIASHS - All rights Reserved </p>
 

@@ -30,14 +30,16 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRoles(['admin','author']);
         });
 
-        //Définir le Role  utilisateur ADMIN on utilisant Gates Façade pour permettre editer un utilisateur
+        //Définir le Role  utilisateur ADMIN et Author on utilisant Gates Façade pour permettre editer un utilisateur et gérer certains fonctionnalités du blog
         Gate::define('edit-users', function($user){
             return $user->hasAnyRoles(['admin','author']);
         });
 
-          //Définir le Role  utilisateur ADMIN on utilisant Gates Façade pour permettre supprimer un utilisateur
+          //Définir le Role  utilisateur ADMIN on utilisant Gates Façade pour permettre supprimer un utilisateur et gérer tous le blog
           Gate::define('delete-users', function($user){
             return $user->hasRole('admin');
         });
+
+       
     }
 }

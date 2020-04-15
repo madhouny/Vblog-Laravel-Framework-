@@ -40,7 +40,7 @@ class CommentsController extends Controller
 
         $comment->save();
 
-        Session::flash('success', 'Commentaire a été bien ajouté');
+        Session::flash('success', 'Commentaire ajouté avec succès');
         return redirect()->back();
 
     }
@@ -63,7 +63,7 @@ class CommentsController extends Controller
         $comment->comment = $request->comment;
         $comment->save();
 
-        Session::flash('success', 'Commentaire mis à jour');
+        Session::flash('success', 'Commentaire mis à jour avec succès');
         return redirect()->route('posts.show', $comment->post->id);
     }
 
@@ -82,7 +82,7 @@ class CommentsController extends Controller
 
 
         // redirection vers la page show avec le flash Message
-        Session::flash('success', 'Commentaire Supprimé!');
+        Session::flash('success', 'Commentaire supprimé avec succès');
         return redirect()->route('posts.show', $post_id);
 
 

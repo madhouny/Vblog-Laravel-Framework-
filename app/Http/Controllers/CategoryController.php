@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $categorie->name = $request->name;
         $categorie->save();
 
-        Session::flash('success', 'une nouvelle catégorie a été créée');
+        Session::flash('success', 'Catégorie ajoutée avec succès');
 
         //redirection vers la page index
         return redirect()->route('categories.index');
@@ -104,7 +104,7 @@ class CategoryController extends Controller
         $categorie->save();
 
     // flash data avec message de succes
-        Session::flash('Success','Modification a été bien prise en charge!');
+        Session::flash('success','Catégorie mise à jour avec succès');
 
     //redirection vers categories.index
         return redirect()->route('categories.index');
@@ -121,7 +121,7 @@ class CategoryController extends Controller
           //Supprimer la catégorie à partir de son Id
           $categorie = Category::find($id);
           $categorie->delete();
-          Session::flash('success', 'la catégorie a été bien supprimer');
+          Session::flash('success', 'Catégorie supprimée avec succès');
           return redirect()->route('categories.index');
     }
 }

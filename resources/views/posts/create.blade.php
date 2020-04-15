@@ -15,6 +15,12 @@
          
         });
       </script>
+       <style>
+        body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+         </style>
 @endsection
     
 @section('content')

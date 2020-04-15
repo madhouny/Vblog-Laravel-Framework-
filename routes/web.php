@@ -26,7 +26,7 @@ Route::group(['middleware'=>['web']], function(){
     Route::post('/postcontact', 'PagesController@postContact')->name('postContact');
     Route::get('/about', 'PagesController@getAbout')->name('about');
     Route::get('/', 'PagesController@getIndex')->name('home');
-    Route::resource('posts','PostController')->middleware('can:manage-users');;
+    Route::resource('posts','PostController');
     
 
     //User routes

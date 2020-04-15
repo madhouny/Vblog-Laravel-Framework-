@@ -48,7 +48,7 @@ class TagController extends Controller
         //Sauvegarder dans la base de donnée
         $tag->save();
 
-        Session::flash('success', 'Un Nouveau Tag a été bien crée');
+        Session::flash('success', ' Tag ajouté avec succès');
 
         //Redirection vers la page index
         return redirect()->route('tags.index');
@@ -100,7 +100,7 @@ class TagController extends Controller
        $tag->save();
 
        // afficher un message de success
-       Session::flush('success', 'Tag Enrégistré avec Succés');
+       Session::flush('success', 'Tag mis à jour avec succès');
         
        // Redirection vers la page show du tag
        return redirect()->route('tags.show', $tag->id);
@@ -122,7 +122,7 @@ class TagController extends Controller
         $tag->delete();
 
         //Afficher un message flash et redirection vers  la page index 
-        Session::flash('sucesss', 'Tag a été bien supprimé');
+        Session::flash('sucesss', 'Tag  supprimé avec succès');
         return redirect()->route('tags.index');
     }
 }

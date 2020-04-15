@@ -4,6 +4,16 @@
     <title> User Management</title>
 @endsection
 
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -25,7 +35,7 @@
                         <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray())}}</td>
 
                          <td>
-                            @can('edit-users')
+                            @can('delete-users')
                             <a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-primary" class="float-left" style="margin-left:5px"> Modifier</button> </a>
                             @endcan
 

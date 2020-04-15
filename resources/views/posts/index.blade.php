@@ -3,6 +3,15 @@
 @section('title')
     <title>Tous les Articles</title>
 @endsection
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
 
 @section('content')
     
@@ -25,9 +34,9 @@
             <table class="table">
                  <thead>
                     <th>Id</th>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Créer à</th>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th>Crée à</th>
                  </thead> 
                  <tbody>
 
@@ -37,7 +46,12 @@
                             <td> {{$post->title}} </td>
                             <td> {{substr(strip_tags($post->body), 0 , 50)}} {{(strlen(strip_tags($post->body)) > 50 ? "..." : "")}}</td>
                             <td> {{ date('M j, Y', strtotime($post->created_at)) }} </td>
-                            <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-info btn-sm">Consulter</a> <a href="{{route('posts.edit', $post->id)}}" class="btn btn-light btn-sm">Modifier</a></td>
+                            @can('manage-users')
+                            <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-info btn-sm">Consulter</a>
+                                
+                                <a href="{{route('posts.edit', $post->id)}}" class="btn btn-light btn-sm">Modifier</a>
+                            </td>
+                                @endcan
                         </tr>
                     @endforeach     
                 

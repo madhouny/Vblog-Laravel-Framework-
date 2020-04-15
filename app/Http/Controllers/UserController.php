@@ -27,7 +27,7 @@ class UserController extends Controller
         return view('users.index')->with('users', $users);
     }
 
-    /**
+    /**s
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //Vérifier si l'utilisateur a la permission de modifier users si il a seulement le role ADMIN
+        //Seulement l'admin et author peuvent editer un user 
         if(Gate::denies('edit-users')){
             return redirect()->route('users.index');
         }
@@ -74,7 +74,7 @@ class UserController extends Controller
         $user->save();
 
          //Afficher un flash message et redirection vers la page index
-         Session::flash('success', ' Utilisateur Modifié');
+         Session::flash('success', ' Utilisateur mis à jour avec succès');
 
         return redirect()->route('users.index');
     }
@@ -88,7 +88,7 @@ class UserController extends Controller
     public function destroy($id)
     {   
 
-        //Vérifier si l'utilisateur a la permission de supprimer un utilisateur si il a seulement le role ADMIN
+        //Seulement l'admin peut supprimer un user 
         if(Gate::denies('delete-users')){
             return redirect()->route('users.index');
         }
@@ -101,7 +101,7 @@ class UserController extends Controller
         $user->delete();
 
         //Afficher un flash message et redirection vers la page index
-        Session::flash('success', ' Utilisateur Supprimé!');
+        Session::flash('success', ' Utilisateur Supprimé avec succès');
 
         // redirection vers la page index
         return redirect()->route('users.index');

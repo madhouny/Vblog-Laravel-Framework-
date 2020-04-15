@@ -4,10 +4,20 @@
     <title>Tous les Catégories</title>
 @endsection
 
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
+
 @section('content')
     
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9" >
             <h1>Catégories</h1>
             <table class="table">
                 <thead>
@@ -37,7 +47,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" >
             <div class="card card-body bg-light">
             <form  action="{{route('categories.store')}}" method="post">
                 @csrf

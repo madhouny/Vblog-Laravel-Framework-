@@ -3,11 +3,20 @@
 @section('title')
     <title>Tous les Tags</title>
 @endsection
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
+@endsection
 
 @section('content')
     
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h1>Tags</h1>
             <table class="table">
                 <thead>

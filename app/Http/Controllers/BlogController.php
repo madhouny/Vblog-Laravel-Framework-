@@ -7,9 +7,9 @@ use App\Post;
 
 class BlogController extends Controller
 {
-    //récupérer tous les articles, 10 articles par pages
+    //récupérer tous les articles, 3 articles par pages
     public function getIndex(){
-        $posts = Post::paginate(10);
+        $posts = Post::paginate(3);
 
         return view('blog.index')->with('posts',$posts);
     }

@@ -2,7 +2,17 @@
  @extends('main') 
 
  @section('title')
- <title>Contact</title> 
+ <title>Contact Us</title> 
+@endsection
+
+@section('stylesheets')
+    <style>
+  body{
+     background: url(/storage/images/login.png) no-repeat center center fixed; 
+    background-size: cover;
+   }
+   
+    </style>
 @endsection
 
 @section('content')
